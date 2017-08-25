@@ -15,10 +15,12 @@ public class Task1Mapper extends Mapper<Longwritable , Text, Text, Text> {
 		Text emptyText = null;
 		emptyText.set(new String("")) ;
 
-		boolean companyNameNull = value.split("\\|")[0].equalsIgnoreCase("NA");
-		boolean productNameNull = value.split("\\|")[1].equalsIgnoreCase("NA");
+		String[] values = value.toString().split("\\|");
+		
+		boolean companyNameNull = values[0].equalsIgnoreCase("NA");
+		boolean productNameNull = values[1].equalsIgnoreCase("NA");
 		if(companyNameNull || productNameNull){
-			emptyText.set(emptyText.toString() + line);
+			emptyText.set(emptyText.toString() + value);
 			context.write(emptyText,new Text());
 		}
 		
