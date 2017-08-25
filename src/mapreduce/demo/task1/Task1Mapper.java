@@ -7,7 +7,7 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.*; 
 
-public class Task1Mapper extends Mapper<Longwritable , Text, Text, Text> {
+public class Task1Mapper extends Mapper<Longwritable , Text, Longwritable, Text> {
 	@SuppressWarnings("null")
 	public void map(Longwritable key, Text value, Context context) 
 			throws IOException, InterruptedException {
