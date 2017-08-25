@@ -7,9 +7,9 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.*; 
 
-public class Task1Mapper extends Mapper<Text, Text, Text, Text> {
+public class Task1Mapper extends Mapper<Longwritable , Text, Text, Text> {
 	@SuppressWarnings("null")
-	public void map(Text key, Text value, Context context) 
+	public void map(Longwritable key, Text value, Context context) 
 			throws IOException, InterruptedException {
 		String[] lineArray = value.toString().split("\n");
 		
@@ -17,8 +17,8 @@ public class Task1Mapper extends Mapper<Text, Text, Text, Text> {
 		emptyText.set(new String("")) ;
 
 		for(String line: lineArray){
-		boolean companyNameNull = line.split("|")[0].equalsIgnoreCase("NA");
-		boolean productNameNull = line.split("|")[1].equalsIgnoreCase("NA");
+		boolean companyNameNull = line.split("\\|")[0].equalsIgnoreCase("NA");
+		boolean productNameNull = line.split("\\|")[1].equalsIgnoreCase("NA");
 		if(companyNameNull || productNameNull){
 			emptyText.set(emptyText.toString() + line);
 		}
